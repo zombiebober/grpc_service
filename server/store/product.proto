@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package store;
+
+message Product{
+    uint32 id = 1;
+    string id_client = 2;
+    string name = 3;
+    Currency currency = 4;
+    float price = 5;
+}
+
+message Discount{
+    Error error = 1;
+    uint32 id = 2;
+    Currency currency = 3;
+    float price = 4;
+}
+
+message Error{
+    bool state = 1;
+    string message = 2;
+}
+enum  Currency{
+    RUB = 0;
+    USD = 1;
+    EUR = 2;
+}
+
+service DiscountService{
+    rpc GetDiscount(Product) returns (Discount) {}
+}
